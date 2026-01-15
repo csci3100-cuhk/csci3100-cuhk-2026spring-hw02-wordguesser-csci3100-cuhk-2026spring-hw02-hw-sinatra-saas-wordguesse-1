@@ -3,6 +3,11 @@
     "build": {
         "dockerfile": "Dockerfile"
     },
+    "features": {
+        "ghcr.io/devcontainers/features/ruby:1": {
+            "version": "3.3.8"
+        }
+    },
     "settings": {
         "terminal.integrated.shell.linux": "/bin/bash"
     },
@@ -32,6 +37,6 @@
             ]
         }
     },
-    "postCreateCommand": "bundle install --user-install",
+    "postCreateCommand": "bundle check || bundle install --path vendor/bundle",
     "remoteUser": "vscode"
 }
