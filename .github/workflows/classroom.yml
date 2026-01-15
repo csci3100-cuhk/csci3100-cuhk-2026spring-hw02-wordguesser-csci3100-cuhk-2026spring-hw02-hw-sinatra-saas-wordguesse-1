@@ -1,0 +1,197 @@
+name: Autograding Tests
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+permissions:
+  checks: write
+  actions: read
+  contents: read
+
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.3.8'
+        bundler-cache: true
+    
+    - name: Install dependencies
+      run: bundle install
+
+    # ==================== RSpec Tests (50 points total) ====================
+    
+    # RSpec: new (5 points)
+    - name: RSpec - new
+      id: rspec-new
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: "RSpec: WordGuesserGame.new"
+        setup-command: ''
+        command: bundle exec rspec spec/wordguesser_game_spec.rb -e "new"
+        timeout: 5
+        max-score: 5
+
+    # RSpec: guessing correctly (5 points)
+    - name: RSpec - guessing correctly
+      id: rspec-guess-correct
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: "RSpec: guessing correctly"
+        setup-command: ''
+        command: bundle exec rspec spec/wordguesser_game_spec.rb -e "guessing correctly"
+        timeout: 5
+        max-score: 5
+
+    # RSpec: guessing incorrectly (5 points)
+    - name: RSpec - guessing incorrectly
+      id: rspec-guess-incorrect
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: "RSpec: guessing incorrectly"
+        setup-command: ''
+        command: bundle exec rspec spec/wordguesser_game_spec.rb -e "guessing incorrectly"
+        timeout: 5
+        max-score: 5
+
+    # RSpec: same letter repeatedly (10 points)
+    - name: RSpec - same letter repeatedly
+      id: rspec-repeat
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: "RSpec: same letter repeatedly"
+        setup-command: ''
+        command: bundle exec rspec spec/wordguesser_game_spec.rb -e "same letter repeatedly"
+        timeout: 5
+        max-score: 10
+
+    # RSpec: invalid guess (10 points)
+    - name: RSpec - invalid guess
+      id: rspec-invalid
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: "RSpec: invalid guess"
+        setup-command: ''
+        command: bundle exec rspec spec/wordguesser_game_spec.rb -e "invalid"
+        timeout: 5
+        max-score: 10
+
+    # RSpec: displayed word with guesses (5 points)
+    - name: RSpec - displayed word
+      id: rspec-display
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: "RSpec: displayed word with guesses"
+        setup-command: ''
+        command: bundle exec rspec spec/wordguesser_game_spec.rb -e "displayed word"
+        timeout: 5
+        max-score: 5
+
+    # RSpec: game status (10 points)
+    - name: RSpec - game status
+      id: rspec-status
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: "RSpec: game status"
+        setup-command: ''
+        command: bundle exec rspec spec/wordguesser_game_spec.rb -e "game status"
+        timeout: 5
+        max-score: 10
+
+    # ==================== Cucumber Tests (50 points total) ====================
+
+    # Cucumber: start new game (5 points)
+    - name: Cucumber - start new game
+      id: cucumber-start
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: "Cucumber: start new game"
+        setup-command: ''
+        command: bundle exec cucumber features/start_new_game.feature
+        timeout: 5
+        max-score: 5
+
+    # Cucumber: guess (15 points)
+    - name: Cucumber - guess
+      id: cucumber-guess
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: "Cucumber: guess"
+        setup-command: ''
+        command: bundle exec cucumber features/guess.feature
+        timeout: 5
+        max-score: 15
+
+    # Cucumber: game over (10 points)
+    - name: Cucumber - game over
+      id: cucumber-gameover
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: "Cucumber: game over"
+        setup-command: ''
+        command: bundle exec cucumber features/game_over.feature
+        timeout: 5
+        max-score: 10
+
+    # Cucumber: invalid guess (5 points)
+    - name: Cucumber - invalid guess
+      id: cucumber-invalid
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: "Cucumber: invalid guess"
+        setup-command: ''
+        command: bundle exec cucumber features/invalid_guess.feature
+        timeout: 5
+        max-score: 5
+
+    # Cucumber: repeated guess (10 points)
+    - name: Cucumber - repeated guess
+      id: cucumber-repeat
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: "Cucumber: repeated guess"
+        setup-command: ''
+        command: bundle exec cucumber features/repeated_guess.feature
+        timeout: 5
+        max-score: 10
+
+    # Cucumber: cheating prevention (5 points)
+    - name: Cucumber - cheating
+      id: cucumber-cheat
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: "Cucumber: cheating prevention"
+        setup-command: ''
+        command: bundle exec cucumber features/cheating.feature
+        timeout: 5
+        max-score: 5
+
+    # ==================== Report Results ====================
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        RSPEC-NEW_RESULTS: ${{ steps.rspec-new.outputs.result }}
+        RSPEC-GUESS-CORRECT_RESULTS: ${{ steps.rspec-guess-correct.outputs.result }}
+        RSPEC-GUESS-INCORRECT_RESULTS: ${{ steps.rspec-guess-incorrect.outputs.result }}
+        RSPEC-REPEAT_RESULTS: ${{ steps.rspec-repeat.outputs.result }}
+        RSPEC-INVALID_RESULTS: ${{ steps.rspec-invalid.outputs.result }}
+        RSPEC-DISPLAY_RESULTS: ${{ steps.rspec-display.outputs.result }}
+        RSPEC-STATUS_RESULTS: ${{ steps.rspec-status.outputs.result }}
+        CUCUMBER-START_RESULTS: ${{ steps.cucumber-start.outputs.result }}
+        CUCUMBER-GUESS_RESULTS: ${{ steps.cucumber-guess.outputs.result }}
+        CUCUMBER-GAMEOVER_RESULTS: ${{ steps.cucumber-gameover.outputs.result }}
+        CUCUMBER-INVALID_RESULTS: ${{ steps.cucumber-invalid.outputs.result }}
+        CUCUMBER-REPEAT_RESULTS: ${{ steps.cucumber-repeat.outputs.result }}
+        CUCUMBER-CHEAT_RESULTS: ${{ steps.cucumber-cheat.outputs.result }}
+      with:
+        runners: rspec-new,rspec-guess-correct,rspec-guess-incorrect,rspec-repeat,rspec-invalid,rspec-display,rspec-status,cucumber-start,cucumber-guess,cucumber-gameover,cucumber-invalid,cucumber-repeat,cucumber-cheat

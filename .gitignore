@@ -1,0 +1,8 @@
+coverage
+.bundle/
+TAGS
+*.swp
+*.log
+.DS_Store
+tmp/
+vendor/bundle/

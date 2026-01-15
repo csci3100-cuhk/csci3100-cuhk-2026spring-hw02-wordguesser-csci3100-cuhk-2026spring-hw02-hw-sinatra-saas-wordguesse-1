@@ -1,0 +1,95 @@
+{
+  "tests": [
+    {
+      "name": "RSpec: WordGuesserGame.new",
+      "setup": "bundle install",
+      "run": "bundle exec rspec spec/wordguesser_game_spec.rb -e \"new\"",
+      "timeout": 5,
+      "points": 5
+    },
+    {
+      "name": "RSpec: guessing correctly",
+      "setup": "",
+      "run": "bundle exec rspec spec/wordguesser_game_spec.rb -e \"guessing correctly\"",
+      "timeout": 5,
+      "points": 5
+    },
+    {
+      "name": "RSpec: guessing incorrectly",
+      "setup": "",
+      "run": "bundle exec rspec spec/wordguesser_game_spec.rb -e \"guessing incorrectly\"",
+      "timeout": 5,
+      "points": 5
+    },
+    {
+      "name": "RSpec: same letter repeatedly",
+      "setup": "",
+      "run": "bundle exec rspec spec/wordguesser_game_spec.rb -e \"same letter repeatedly\"",
+      "timeout": 5,
+      "points": 10
+    },
+    {
+      "name": "RSpec: invalid guess",
+      "setup": "",
+      "run": "bundle exec rspec spec/wordguesser_game_spec.rb -e \"invalid\"",
+      "timeout": 5,
+      "points": 10
+    },
+    {
+      "name": "RSpec: displayed word with guesses",
+      "setup": "",
+      "run": "bundle exec rspec spec/wordguesser_game_spec.rb -e \"displayed word\"",
+      "timeout": 5,
+      "points": 5
+    },
+    {
+      "name": "RSpec: game status",
+      "setup": "",
+      "run": "bundle exec rspec spec/wordguesser_game_spec.rb -e \"game status\"",
+      "timeout": 5,
+      "points": 10
+    },
+    {
+      "name": "Cucumber: start new game",
+      "setup": "",
+      "run": "bundle exec cucumber features/start_new_game.feature",
+      "timeout": 5,
+      "points": 5
+    },
+    {
+      "name": "Cucumber: guess",
+      "setup": "",
+      "run": "bundle exec cucumber features/guess.feature",
+      "timeout": 5,
+      "points": 15
+    },
+    {
+      "name": "Cucumber: game over",
+      "setup": "",
+      "run": "bundle exec cucumber features/game_over.feature",
+      "timeout": 5,
+      "points": 10
+    },
+    {
+      "name": "Cucumber: invalid guess",
+      "setup": "",
+      "run": "bundle exec cucumber features/invalid_guess.feature",
+      "timeout": 5,
+      "points": 5
+    },
+    {
+      "name": "Cucumber: repeated guess",
+      "setup": "",
+      "run": "bundle exec cucumber features/repeated_guess.feature",
+      "timeout": 5,
+      "points": 10
+    },
+    {
+      "name": "Cucumber: cheating prevention",
+      "setup": "",
+      "run": "bundle exec cucumber features/cheating.feature",
+      "timeout": 5,
+      "points": 5
+    }
+  ]
+}
