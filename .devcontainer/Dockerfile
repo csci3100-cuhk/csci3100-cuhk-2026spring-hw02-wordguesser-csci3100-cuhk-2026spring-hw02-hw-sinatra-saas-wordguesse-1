@@ -1,5 +1,5 @@
-# Use the official Microsoft Ruby image
-FROM mcr.microsoft.com/vscode/devcontainers/ruby:3
+# Use Ubuntu base image - Ruby will be installed via devcontainer feature
+FROM mcr.microsoft.com/devcontainers/base:ubuntu
 
 # Install system dependencies for building gems and running tests
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \

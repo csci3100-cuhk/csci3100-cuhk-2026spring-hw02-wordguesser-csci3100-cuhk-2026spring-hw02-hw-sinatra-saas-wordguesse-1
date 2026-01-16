@@ -2,23 +2,13 @@
     "name": "CSCI3100 Course Environment",
     "build": {
         "dockerfile": "Dockerfile",
-        "context": ".."
+        "context": "."
     },
     "features": {
         "ghcr.io/devcontainers/features/ruby:1": {
             "version": "3.3.8"
         }
     },
-    "settings": {
-        "terminal.integrated.shell.linux": "/bin/bash"
-    },
-    "extensions": [
-        "rebornix.Ruby",
-        "castwide.solargraph",
-        "misogi.ruby-lucy",
-        "kaiwood.endwise",
-        "alexyz.cucumberautocomplete"
-    ],
     "customizations": {
         "vscode": {
             "settings": {
