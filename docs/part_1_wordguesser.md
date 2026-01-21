@@ -1,9 +1,3 @@
-```sh
-git clone https://github.com/saasbook/hw-sinatra-saas-wordguesser
-cd hw-sinatra-saas-wordguesser
-bundle
-```
-
 Developing Wordguesser Using TDD and Guard
 -----------------------------------------
 
