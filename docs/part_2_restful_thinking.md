@@ -172,4 +172,4 @@ Note that Sinatra does not really enforce MVC or any other design pattern---if a
 
 -----
 
-Next: [Part 3 - Connecting Wordguesser to Sinatra](part_3_connecting_wordguesser_to_sinatra.md)
+Next: [Part 3 - Connecting Wordguesser to Sinatra](part_3_connecting_Wordguesser_to_sinatra.md)
