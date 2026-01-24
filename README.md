@@ -27,7 +27,7 @@ Prerequisites
 -------------
 * You should be familiar with Ruby basics, for example by completing the Ruby Intro or Ruby Calisthenics assignment.
 * You should have read [ESaaS](http://www.saasbook.info) Chapter 2, "The Architecture of SaaS Applications".
-* You should be comfortable with basic Git usage and how to push your code to GitHub, as described in Appendix A of [ESaaS](http://www.saasbook.info).
+* You should be comfortable with basic Git usage and how to push your code to GitHub, as described in [Tutorial 1](https://blackboard.cuhk.edu.hk/ultra/courses/_254403_1/outline/file/_6509549_1).
 * You will need "survival level" Unix command-line skills and facility with an editor to edit code files.
 
 **NOTE: You may find the [Sinatra documentation](https://sinatrarb.com) helpful to have on hand.**
