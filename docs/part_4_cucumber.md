@@ -77,7 +77,7 @@ The create-new-game code in the Sinatra app should do the following:
 
 View how these steps are actualized in the app.rb file under the `post /create do` route.
 
-Now stage and commit all files locally, then `git push heroku master` to deploy to Heroku again and manually verify this improved behavior.
+Now stage and commit all files locally, and re-run the scenario to verify the improved behavior.
 
 #### Self Check Question
 
