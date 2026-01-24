@@ -1,9 +1,9 @@
 Part 0: Demystifying SaaS app creation
 ==============================
 
-**Goal:** Understand the steps needed to create, version, and deploy a SaaS app, including tracking the libraries it depends on so that your production and development environments are as similar as possible.
+**Goal:** Understand the steps needed to create, version, and run a SaaS app locally, including tracking the libraries it depends on so that your development and test environments are as similar as possible.
 
-**What you will do:** Create a simple "hello world" app using the Sinatra framework, version it properly, and deploy it to Heroku.
+**What you will do:** Create a simple "hello world" app using the Sinatra framework, version it properly, and run it locally (or in Codespace) to verify it works.
 
 Creating and versioning a simple SaaS app
 -----------------------------------------
@@ -103,13 +103,17 @@ run MyApp
 The first line tells Rack that our app lives in the file `app.rb`, which you created above to hold your app's code.  We have to explicitly state that our `app` file is located in the current directory (.) because `require` normally looks only in standard system directories to find gems.
 
 You're now ready to test-drive our simple app with a command line:
-```sh
-bundle exec rackup --port 3000
-```
+| Local computer | Codio |
+|-----|------|
+| `bundle exec rackup --port 3000` | `bundle exec rackup --host 0.0.0.0 --port 3000` |
 
 This command starts the Rack appserver and the WEBrick webserver.  Prefixing it with `bundle exec` ensures that you are running with the gems specified in `Gemfile.lock`.  Rack will look for `config.ru` and attempt to start our app based on the information there.
 
-To see the webapp, visit `localhost:3000` in your browser to see the webapp. It will open in a new tab in the IDE if you click on it, but you should open up a fresh browser tab and paste in that URL. <br><br> Point a new Web browser tab at the running app's URL and verify that you can see "Hello World". 
+To see the webapp:
+
+| Local computer | Codio |
+|-----|------|
+| Visit `localhost:3000` in your browser to see the webapp. It will open in a new tab in the IDE if you click on it, but you should open up a fresh browser tab and paste in that URL. <br><br> Point a new Web browser tab at the running app's URL and verify that you can see "Hello World". | Click the "Box URL" button on your top tool bar. The button should be pre-configured to point at port 3000: <br> <br> ![BoxURL](https://global.codio.com/content/BoxURL.png) <br> <br> The app should open in a new tab. Verify that you can see "Hello World". |
 
 #### Self Check Question
 
@@ -146,9 +150,9 @@ Now run `bundle install` to have it download the `rerun` gem and any dependencie
 Any gem specifications inside the `group :development` block will only be examined if bundle is run in the development environment.  (The other environments you can specify are :test and :production, and you can define new environments yourself.)  Gem specifications outside of any group block are assumed to apply in all environments.
 
 Say the following in the terminal window to start your app and verify the app is running:
-```sh
-bundle exec rerun -- rackup --port 3000
-```
+| Local computer | Codio |
+|-----|------|
+| `bundle exec rerun -- rackup --port 3000` | `bundle exec rerun -- rackup -p 3000 -o 0.0.0.0` |
 
 There are more details on rerun's usage available in the gem's [GitHub
 README](https://github.com/alexch/rerun#usage). Gems are usually on
@@ -158,33 +162,9 @@ In this case we are prefixing with `bundle exec` again in order to ensure we are
 
 Modify `app.rb` to print a different message, and verify that the change is detected by refreshing your browser tab with the running app.  Also before we move on you should commit your latest changes to git.
 
-Deploy to Heroku
-----------------
-Heroku is a cloud platform-as-a-service (PaaS) where we can deploy our Sinatra (and later Rails) applications. If you don't have an account yet, go sign up at http://www.heroku.com. You'll need your login and password for the next step.
-
-Install Heroku CLI following [instructions](https://devcenter.heroku.com/articles/heroku-cli).
-
-Log in to your Heroku account by typing the command: `heroku login -i` in the terminal. This will connect you to your Heroku account.
-
-While in the root directory of your project (not your whole workspace), type `heroku create` to create a new project in Heroku. This will tell the Heroku service to prepare for some incoming code, and locally it will add a remote git repository for you called `heroku`.
-
-Next, make sure you stage and commit all changes locally as instructed above (i.e. `git add`, `git commit`, etc).
-
-Earlier we saw that to run the app locally you run `rackup` to start the Rack appserver, and Rack looks in `config.ru` to determine how to start your Sinatra app.  How do you tell a production environment how to start an appserver or other processes necessary to receive requests and start your app?  In the case of Heroku, this is done with a special file named `Procfile`,  which specifies one or more types of Heroku processes your app will use, and how to start each one. The most basic Heroku process type is called a Dyno, or "web worker".  One Dyno can serve one user request at a time.  Since we're on Heroku's free tier, we can only have one Dyno. Let's create a file named `Procfile`, and only this as the name (i.e. Procfile.txt is not valid). Write the following line in your `Procfile`:
-
-```
-web: bundle exec rackup config.ru -p $PORT
-```
-
-This tells Heroku to start a single web worker (Dyno) using essentially the same command line you used to start Rack locally. Note that in some cases, a `Procfile` is not necessary since Heroku can infer from your files how to start the app. However, it's always better to be explicit.
-
-Your local repo is now ready to deploy to Heroku:
-
-```
-$ git push heroku master
-```
-
-(`master` refers to which branch of the remote Heroku repo we are pushing to.  We'll learn about branches later in the course, but for now, suffice it to say that you can only deploy to the `master` branch on Heroku.) This push will create a running instance of your app at some URL ending with `herokuapp.com`. Enter that URL in a new browser tab to see your app running live. Congratulations, you did it--your app is live!
+Local run check
+---------------
+This assignment does not require deployment. Verify your app runs locally (or in Codespace) using `rackup` or `rerun` and can be visited in a browser.
 
 Summary
 -------
@@ -197,7 +177,7 @@ Summary
 
 * You versioned the important files containing not only your app's code but the necessary info to reproduce all the libraries it relies on and the file that starts up the app.
 
-* You deployed this simple app to Heroku.
+* You verified this simple app runs locally.
 
 -----
 
