@@ -1,6 +1,6 @@
 require 'webmock/cucumber'
 
 Before do
-  stub_request(:post, "http://randomword.saasbook.info/RandomWord").to_return(status: 200, headers: {},
-                                                                              body: "testword")
+  stub_request(:get, "https://random-word-api.vercel.app/api").to_return(status: 200, headers: {},
+                                                                             body: ["testword"].to_json)
 end
