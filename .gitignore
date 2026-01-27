@@ -6,3 +6,4 @@ TAGS
 .DS_Store
 tmp/
 vendor/bundle/
+Gemfile.lock
