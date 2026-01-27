@@ -15,7 +15,8 @@ class WordGuesserApp < Sinatra::Base
   after do
     session[:game] = @game
   end
-
+  # These two routes are good examples of Sinatra syntax
+  # to help you with the rest of the assignment
   get '/' do
     redirect '/new'
   end
