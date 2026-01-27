@@ -66,8 +66,6 @@ When running tests, you can insert the Ruby command `byebug` into your app code 
 $ curl https://random-word-api.vercel.app/api?words=1
 ```
 
-(`--data` is necessary to force `curl` to do a POST rather than a GET.  Normally the argument to `--data` would be the encoded form fields, but in this case no form fields are needed.) Using `curl` is a great way to debug interactions with external services.  `man curl` for (much) more detail on this powerful command-line tool.
-
 -----
 
 Next: [Part 2 - RESTful Thinking](part_2_restful_thinking.md)
