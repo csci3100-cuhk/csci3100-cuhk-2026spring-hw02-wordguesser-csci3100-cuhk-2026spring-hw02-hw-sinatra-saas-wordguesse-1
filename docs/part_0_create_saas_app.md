@@ -73,6 +73,7 @@ Create a file in your project called `app.rb` containing the following:
 ```rb
 require 'sinatra'
 
+set :host_authorization, { permitted_hosts: [] }  
 class MyApp < Sinatra::Base
   get '/' do
     "<!DOCTYPE html><html><head></head><body><h1>Hello World</h1></body></html>"
