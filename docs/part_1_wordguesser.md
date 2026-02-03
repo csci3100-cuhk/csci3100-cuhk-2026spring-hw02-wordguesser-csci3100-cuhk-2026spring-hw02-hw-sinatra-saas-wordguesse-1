@@ -22,11 +22,7 @@ To make the game fun to play, each time you start a new game the app will actual
 
 * In the app's root directory, use bundle to fire up the Autotest framework, which looks for various files to figure out what kind of app you're testing and what test framework you're using.  In our case, it will discover the file called `.rspec`, which contains RSpec options and indicates we're using the RSpec testing framework.  Autotest will therefore look for test files under `spec/` and the corresponding class files in `lib/`.
 
-We've provided a set of test cases to help you develop the game class. Take a look at `spec/wordguesser_game_spec.rb`.  It specifies behaviors that it expects from the class `lib/wordguesser_game.rb`.  Initially, we have added `, :pending => true` to every spec, so when Autotest first runs these, you should see no test cases yet, and the report "0 examples, 0 failures."
-
-Now, with Autotest still running, delete `, :pending => true` from line 12, and save the file.  You should immediately see Autotest wake up and re-run the tests.  You should now have 1 examples, 1 failure.
-
-The `describe 'new'` block means "the following block of tests describe the behavior of a 'new' WordGuesserGame instance."  The `WordGuesserGame.new` line causes a new instance to be created, and the next lines verify the presence and values of instance variables.
+We've provided a set of test cases to help you develop the game class. Take a look at `spec/wordguesser_game_spec.rb`.  It specifies behaviors that it expects from the class `lib/wordguesser_game.rb`. The `describe 'new'` block means "the following block of tests describe the behavior of a 'new' WordGuesserGame instance."  The `WordGuesserGame.new` line causes a new instance to be created, and the next lines verify the presence and values of instance variables.
 
 #### Self Check Questions
 
