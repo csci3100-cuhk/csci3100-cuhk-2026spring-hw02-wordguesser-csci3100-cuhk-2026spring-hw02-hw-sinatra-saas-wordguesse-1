@@ -5,6 +5,7 @@ on:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
+  workflow_dispatch:
 
 permissions:
   checks: write
@@ -18,15 +19,18 @@ jobs:
     
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+      id: checkout
+      uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
     
     - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
+      id: setup-ruby
+      uses: ruby/setup-ruby@95ef2b042f9d7a56d8268cba8559e2842e2ad01b
       with:
         ruby-version: '3.3.8'
         bundler-cache: true
     
     - name: Install dependencies
+      id: install
       run: bundle install
 
     # ==================== RSpec Tests (50 points total) ====================
@@ -34,7 +38,7 @@ jobs:
     # RSpec: new (5 points)
     - name: RSpec - new
       id: rspec-new
-      uses: classroom-resources/autograding-command-grader@v1
+      uses: classroom-resources/autograding-command-grader@d5b3fa6f50f7f629b7bfae0cc3e4c58852b412d5
       with:
         test-name: "RSpec: WordGuesserGame.new"
         setup-command: ''
@@ -45,7 +49,7 @@ jobs:
     # RSpec: guessing correctly (5 points)
     - name: RSpec - guessing correctly
       id: rspec-guess-correct
-      uses: classroom-resources/autograding-command-grader@v1
+      uses: classroom-resources/autograding-command-grader@d5b3fa6f50f7f629b7bfae0cc3e4c58852b412d5
       with:
         test-name: "RSpec: guessing correctly"
         setup-command: ''
@@ -56,7 +60,7 @@ jobs:
     # RSpec: guessing incorrectly (5 points)
     - name: RSpec - guessing incorrectly
       id: rspec-guess-incorrect
-      uses: classroom-resources/autograding-command-grader@v1
+      uses: classroom-resources/autograding-command-grader@d5b3fa6f50f7f629b7bfae0cc3e4c58852b412d5
       with:
         test-name: "RSpec: guessing incorrectly"
         setup-command: ''
@@ -67,7 +71,7 @@ jobs:
     # RSpec: same letter repeatedly (10 points)
     - name: RSpec - same letter repeatedly
       id: rspec-repeat
-      uses: classroom-resources/autograding-command-grader@v1
+      uses: classroom-resources/autograding-command-grader@d5b3fa6f50f7f629b7bfae0cc3e4c58852b412d5
       with:
         test-name: "RSpec: same letter repeatedly"
         setup-command: ''
@@ -78,7 +82,7 @@ jobs:
     # RSpec: invalid guess (10 points)
     - name: RSpec - invalid guess
       id: rspec-invalid
-      uses: classroom-resources/autograding-command-grader@v1
+      uses: classroom-resources/autograding-command-grader@d5b3fa6f50f7f629b7bfae0cc3e4c58852b412d5
       with:
         test-name: "RSpec: invalid guess"
         setup-command: ''
@@ -89,7 +93,7 @@ jobs:
     # RSpec: displayed word with guesses (5 points)
     - name: RSpec - displayed word
       id: rspec-display
-      uses: classroom-resources/autograding-command-grader@v1
+      uses: classroom-resources/autograding-command-grader@d5b3fa6f50f7f629b7bfae0cc3e4c58852b412d5
       with:
         test-name: "RSpec: displayed word with guesses"
         setup-command: ''
@@ -100,7 +104,7 @@ jobs:
     # RSpec: game status (10 points)
     - name: RSpec - game status
       id: rspec-status
-      uses: classroom-resources/autograding-command-grader@v1
+      uses: classroom-resources/autograding-command-grader@d5b3fa6f50f7f629b7bfae0cc3e4c58852b412d5
       with:
         test-name: "RSpec: game status"
         setup-command: ''
@@ -113,7 +117,7 @@ jobs:
     # Cucumber: start new game (5 points)
     - name: Cucumber - start new game
       id: cucumber-start
-      uses: classroom-resources/autograding-command-grader@v1
+      uses: classroom-resources/autograding-command-grader@d5b3fa6f50f7f629b7bfae0cc3e4c58852b412d5
       with:
         test-name: "Cucumber: start new game"
         setup-command: ''
@@ -124,7 +128,7 @@ jobs:
     # Cucumber: guess (15 points)
     - name: Cucumber - guess
       id: cucumber-guess
-      uses: classroom-resources/autograding-command-grader@v1
+      uses: classroom-resources/autograding-command-grader@d5b3fa6f50f7f629b7bfae0cc3e4c58852b412d5
       with:
         test-name: "Cucumber: guess"
         setup-command: ''
@@ -135,7 +139,7 @@ jobs:
     # Cucumber: game over (10 points)
     - name: Cucumber - game over
       id: cucumber-gameover
-      uses: classroom-resources/autograding-command-grader@v1
+      uses: classroom-resources/autograding-command-grader@d5b3fa6f50f7f629b7bfae0cc3e4c58852b412d5
       with:
         test-name: "Cucumber: game over"
         setup-command: ''
@@ -146,7 +150,7 @@ jobs:
     # Cucumber: invalid guess (5 points)
     - name: Cucumber - invalid guess
       id: cucumber-invalid
-      uses: classroom-resources/autograding-command-grader@v1
+      uses: classroom-resources/autograding-command-grader@d5b3fa6f50f7f629b7bfae0cc3e4c58852b412d5
       with:
         test-name: "Cucumber: invalid guess"
         setup-command: ''
@@ -157,7 +161,7 @@ jobs:
     # Cucumber: repeated guess (10 points)
     - name: Cucumber - repeated guess
       id: cucumber-repeat
-      uses: classroom-resources/autograding-command-grader@v1
+      uses: classroom-resources/autograding-command-grader@d5b3fa6f50f7f629b7bfae0cc3e4c58852b412d5
       with:
         test-name: "Cucumber: repeated guess"
         setup-command: ''
@@ -168,7 +172,7 @@ jobs:
     # Cucumber: cheating prevention (5 points)
     - name: Cucumber - cheating
       id: cucumber-cheat
-      uses: classroom-resources/autograding-command-grader@v1
+      uses: classroom-resources/autograding-command-grader@d5b3fa6f50f7f629b7bfae0cc3e4c58852b412d5
       with:
         test-name: "Cucumber: cheating prevention"
         setup-command: ''
@@ -178,7 +182,8 @@ jobs:
 
     # ==================== Report Results ====================
     - name: Autograding Reporter
-      uses: classroom-resources/autograding-grading-reporter@v1
+      if: always()
+      uses: classroom-resources/autograding-grading-reporter@d13b5912daf5042ac1b71bc38bdb4a6bcd61d8ca
       env:
         RSPEC-NEW_RESULTS: ${{ steps.rspec-new.outputs.result }}
         RSPEC-GUESS-CORRECT_RESULTS: ${{ steps.rspec-guess-correct.outputs.result }}
@@ -195,3 +200,99 @@ jobs:
         CUCUMBER-CHEAT_RESULTS: ${{ steps.cucumber-cheat.outputs.result }}
       with:
         runners: rspec-new,rspec-guess-correct,rspec-guess-incorrect,rspec-repeat,rspec-invalid,rspec-display,rspec-status,cucumber-start,cucumber-guess,cucumber-gameover,cucumber-invalid,cucumber-repeat,cucumber-cheat
+
+    - name: Generate grade result
+      if: always()
+      env:
+        HEAD_SHA: ${{ github.sha }}
+        CHECKOUT_OUTCOME: ${{ steps.checkout.outcome }}
+        SETUP_RUBY_OUTCOME: ${{ steps.setup-ruby.outcome }}
+        INSTALL_OUTCOME: ${{ steps.install.outcome }}
+        RSPEC_NEW: ${{ steps.rspec-new.outputs.result }}
+        RSPEC_GUESS_CORRECT: ${{ steps.rspec-guess-correct.outputs.result }}
+        RSPEC_GUESS_INCORRECT: ${{ steps.rspec-guess-incorrect.outputs.result }}
+        RSPEC_REPEAT: ${{ steps.rspec-repeat.outputs.result }}
+        RSPEC_INVALID: ${{ steps.rspec-invalid.outputs.result }}
+        RSPEC_DISPLAY: ${{ steps.rspec-display.outputs.result }}
+        RSPEC_STATUS: ${{ steps.rspec-status.outputs.result }}
+        CUCUMBER_START: ${{ steps.cucumber-start.outputs.result }}
+        CUCUMBER_GUESS: ${{ steps.cucumber-guess.outputs.result }}
+        CUCUMBER_GAMEOVER: ${{ steps.cucumber-gameover.outputs.result }}
+        CUCUMBER_INVALID: ${{ steps.cucumber-invalid.outputs.result }}
+        CUCUMBER_REPEAT: ${{ steps.cucumber-repeat.outputs.result }}
+        CUCUMBER_CHEAT: ${{ steps.cucumber-cheat.outputs.result }}
+      run: |
+        python3 - <<'PY'
+        import base64
+        import json
+        import os
+
+        definitions = [
+            ("RSpec: WordGuesserGame.new", 5, "RSPEC_NEW"),
+            ("RSpec: guessing correctly", 5, "RSPEC_GUESS_CORRECT"),
+            ("RSpec: guessing incorrectly", 5, "RSPEC_GUESS_INCORRECT"),
+            ("RSpec: same letter repeatedly", 10, "RSPEC_REPEAT"),
+            ("RSpec: invalid guess", 10, "RSPEC_INVALID"),
+            ("RSpec: displayed word with guesses", 5, "RSPEC_DISPLAY"),
+            ("RSpec: game status", 10, "RSPEC_STATUS"),
+            ("Cucumber: start new game", 5, "CUCUMBER_START"),
+            ("Cucumber: guess", 15, "CUCUMBER_GUESS"),
+            ("Cucumber: game over", 10, "CUCUMBER_GAMEOVER"),
+            ("Cucumber: invalid guess", 5, "CUCUMBER_INVALID"),
+            ("Cucumber: repeated guess", 10, "CUCUMBER_REPEAT"),
+            ("Cucumber: cheating prevention", 5, "CUCUMBER_CHEAT"),
+        ]
+        infrastructure = {
+            "checkout": os.environ.get("CHECKOUT_OUTCOME"),
+            "setup-ruby": os.environ.get("SETUP_RUBY_OUTCOME"),
+            "install": os.environ.get("INSTALL_OUTCOME"),
+        }
+        errors = [f"{name}={outcome or 'not_run'}" for name, outcome in infrastructure.items()
+                  if outcome != "success"]
+        tests = []
+        for name, maximum, env_name in definitions:
+            encoded = os.environ.get(env_name, "")
+            score = 0
+            status = "failed"
+            message = "Test did not produce a result"
+            if encoded:
+                try:
+                    payload = json.loads(base64.b64decode(encoded).decode())
+                    test = (payload.get("tests") or [{}])[0]
+                    score = test.get("score", 0)
+                    status = "passed" if score == maximum else "failed"
+                    message = test.get("message", "") or ""
+                except Exception as exc:
+                    errors.append(f"{name}: invalid grader output: {exc}")
+            tests.append({
+                "name": name,
+                "score": score,
+                "max_score": maximum,
+                "status": status,
+                "message": message,
+            })
+
+        result = {
+            "schema": "cuhk-csci3100-grade/v1",
+            "assignment": "hw02",
+            "head_sha": os.environ["HEAD_SHA"],
+            "score": sum(test["score"] for test in tests),
+            "max_score": 100,
+            "tests": tests,
+        }
+        if errors:
+            result["status"] = "grading_error"
+            result["message"] = "; ".join(errors)
+        with open("grade-result.json", "w", encoding="utf-8") as output:
+            json.dump(result, output, ensure_ascii=False, indent=2, allow_nan=False)
+            output.write("\n")
+        PY
+
+    - name: Upload grade result
+      if: always()
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      with:
+        name: csci3100-grade-result
+        path: grade-result.json
+        if-no-files-found: error
+        retention-days: 30
