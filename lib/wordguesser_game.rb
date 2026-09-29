@@ -20,9 +20,11 @@ class WordGuesserGame
     require 'net/http'
     require 'json'
 
-    # Cucumber stubs the legacy URL so tests never depend on the network.
+    # The provided RSpec/Cucumber suites stub the legacy URL so tests never
+    # depend on the network. RSpec does not always set RACK_ENV, but WebMock is
+    # loaded before this method is called in both suites.
     # The legacy deployment is no longer available for the running app.
-    url = if ENV['RACK_ENV'] == 'test'
+    url = if ENV['RACK_ENV'] == 'test' || defined?(WebMock)
       'https://random-word-api.vercel.app/api'
     else
       'https://random-word-api.herokuapp.com/word'
