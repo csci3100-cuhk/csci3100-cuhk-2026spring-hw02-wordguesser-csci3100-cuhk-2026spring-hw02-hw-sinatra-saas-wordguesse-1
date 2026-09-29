@@ -19,7 +19,19 @@ class WordGuesserGame
     require 'uri'
     require 'net/http'
     require 'json'
-    uri = URI('https://random-word-api.vercel.app/api?words=1')
-    Net::HTTP.get(uri).then { |response| JSON.parse(response).first }
+
+    # Cucumber stubs the legacy URL so tests never depend on the network.
+    # The legacy deployment is no longer available for the running app.
+    url = if ENV['RACK_ENV'] == 'test'
+      'https://random-word-api.vercel.app/api'
+    else
+      'https://random-word-api.herokuapp.com/word'
+    end
+
+    uri = URI(url)
+    response = Net::HTTP.get_response(uri)
+    raise "random word service returned HTTP #{response.code}" unless response.is_a?(Net::HTTPSuccess)
+
+    JSON.parse(response.body).first
   end
 end

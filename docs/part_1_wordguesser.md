@@ -57,7 +57,7 @@ When running tests, you can insert the Ruby command `byebug` into your app code 
 * Take a look at the code in the class method `get_random_word`, which retrieves a random word from a Web service we found that does just that.  Use the following command to verify that the Web service actually works this way. Run it several times to verify that you get different words.
 
 ```
-$ curl https://random-word-api.vercel.app/api?words=1
+$ curl https://random-word-api.herokuapp.com/word
 ```
 
 -----
